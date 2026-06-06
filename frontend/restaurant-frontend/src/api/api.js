@@ -38,3 +38,7 @@ export const placeOrder = (bookingId, order) => api.post(`/orders/booking/${book
 export const updateOrderStatus = (id, status) => api.put(`/orders/${id}/status/${status}`);
 export const getOrdersByBooking = (bookingId) => api.get(`/orders/booking/${bookingId}`);
 export const getTotalBill = (bookingId) => api.get(`/orders/booking/${bookingId}/bill`);
+
+// Dashboard
+export const getAllWaitlist = () => api.get('/waitlist/all');
+export const getAllOrders = () => api.get('/orders');
