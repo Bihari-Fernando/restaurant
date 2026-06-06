@@ -81,7 +81,8 @@ function Tables() {
 
       <div className="card">
         <h2>🪑 All Tables</h2>
-        <table className="data-table">
+        <div className="table-wrapper">
+          <table className="data-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -102,7 +103,7 @@ function Tables() {
                     {table.status}
                   </span>
                 </td>
-                <td style={{ display: 'flex', gap: '8px' }}>
+                <td className="action-buttons">
                   {table.status === 'AVAILABLE' ? (
                     <button className="btn btn-warning" onClick={() => handleStatusChange(table.id, 'OCCUPIED')}>
                       Mark Occupied
@@ -120,6 +121,8 @@ function Tables() {
             ))}
           </tbody>
         </table>
+        </div>
+        
       </div>
     </div>
   );
