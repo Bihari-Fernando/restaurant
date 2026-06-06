@@ -69,7 +69,7 @@ function Dashboard() {
   return (
     <div>
       {/* Stats Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '25px' }}>
+      <div className="stats-grid">
         <div className="card" style={{ textAlign: 'center', borderTop: '4px solid #3498db' }}>
           <div style={{ fontSize: '36px', fontWeight: 'bold', color: '#3498db' }}>{tables.length}</div>
           <div style={{ color: '#7f8c8d', marginTop: '5px' }}>🪑 Total Tables</div>
@@ -89,7 +89,7 @@ function Dashboard() {
       </div>
 
       {/* Charts Row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '25px' }}>
+      <div className="chart-grid">
 
         {/* Tables Pie Chart */}
         <div className="card">
@@ -143,7 +143,7 @@ function Dashboard() {
       </div>
 
       {/* Quick Status */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+      <div className="quick-grid">
         <div className="card" style={{ borderLeft: '4px solid #2ecc71' }}>
           <h3 style={{ color: '#2ecc71' }}>✅ Available Tables</h3>
           <div style={{ fontSize: '28px', fontWeight: 'bold', marginTop: '10px' }}>{availableTables} / {tables.length}</div>
