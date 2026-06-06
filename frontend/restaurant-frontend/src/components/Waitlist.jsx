@@ -81,7 +81,8 @@ function Waitlist() {
 
       <div className="card">
         <h2>📋 Current Waitlist</h2>
-        <table className="data-table">
+        <div className="table-wrapper">
+            <table className="data-table">
           <thead>
             <tr>
               <th>Position</th>
@@ -104,7 +105,7 @@ function Waitlist() {
                     {entry.status}
                   </span>
                 </td>
-                <td style={{ display: 'flex', gap: '8px' }}>
+                <td className="action-buttons">
                   <button className="btn btn-success" onClick={() => handleSeated(entry.id)}>
                     Seated
                   </button>
@@ -116,6 +117,8 @@ function Waitlist() {
             ))}
           </tbody>
         </table>
+        </div>
+        
       </div>
     </div>
   );
