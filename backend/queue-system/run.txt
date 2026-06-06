@@ -1,0 +1,3 @@
+\connect root@localhost
+\sql
+USE restaurantdb;

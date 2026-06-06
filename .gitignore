@@ -1,0 +1,14 @@
+# Backend
+backend/target/
+backend/.mvn/
+
+# Frontend
+frontend/restaurant-frontend/node_modules/
+frontend/restaurant-frontend/build/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Environment
+.env
