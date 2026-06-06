@@ -91,7 +91,8 @@ function Orders() {
 
       <div className="card">
         <h2>🍗 All Orders</h2>
-        <table className="data-table">
+        <div className="table-wrapper">
+            <table className="data-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -118,7 +119,7 @@ function Orders() {
                     {order.status}
                   </span>
                 </td>
-                <td style={{ display: 'flex', gap: '8px' }}>
+                <td className="action-buttons">
                   {order.status === 'PENDING' && (
                     <button className="btn btn-warning" onClick={() => handleStatusUpdate(order.id, 'PREPARING')}>
                       Preparing
@@ -134,6 +135,8 @@ function Orders() {
             ))}
           </tbody>
         </table>
+        </div>
+        
       </div>
     </div>
   );
