@@ -1,38 +1,147 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: #f5f5f5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.navbar {
+  background-color: #2c3e50;
   color: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar h1 {
+  font-size: 22px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-links {
+  display: flex;
+  gap: 10px;
 }
+
+.nav-links button {
+  background: transparent;
+  color: white;
+  border: 2px solid transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.nav-links button:hover {
+  border-color: white;
+}
+
+.nav-links button.active {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+}
+
+.main-content {
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+/* Forms */
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.form-row input, .form-row select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  flex: 1;
+  min-width: 150px;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.btn:hover { opacity: 0.85; }
+.btn-primary { background-color: #3498db; color: white; }
+.btn-success { background-color: #2ecc71; color: white; }
+.btn-danger { background-color: #e74c3c; color: white; }
+.btn-warning { background-color: #f39c12; color: white; }
+
+/* Table */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.data-table th, .data-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.data-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Status badges */
+.badge {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-available { background-color: #d5f5e3; color: #27ae60; }
+.badge-occupied { background-color: #fde8e8; color: #e74c3c; }
+.badge-waiting { background-color: #fef9e7; color: #f39c12; }
+.badge-confirmed { background-color: #d6eaf8; color: #2980b9; }
+.badge-completed { background-color: #d5f5e3; color: #27ae60; }
+.badge-cancelled { background-color: #f2f3f4; color: #7f8c8d; }
+.badge-pending { background-color: #fef9e7; color: #f39c12; }
+.badge-preparing { background-color: #fde8d8; color: #e67e22; }
+.badge-served { background-color: #d5f5e3; color: #27ae60; }
