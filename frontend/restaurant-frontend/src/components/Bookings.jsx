@@ -83,7 +83,8 @@ function Bookings() {
 
       <div className="card">
         <h2>📅 All Bookings</h2>
-        <table className="data-table">
+        <div className="table-wrapper">
+            <table className="data-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -106,7 +107,7 @@ function Bookings() {
                     {booking.status}
                   </span>
                 </td>
-                <td style={{ display: 'flex', gap: '8px' }}>
+                <td className="action-buttons">
                   {booking.status === 'CONFIRMED' && (
                     <>
                       <button className="btn btn-success" onClick={() => handleComplete(booking.id)}>
@@ -122,6 +123,8 @@ function Bookings() {
             ))}
           </tbody>
         </table>
+        </div>
+        
       </div>
     </div>
   );
