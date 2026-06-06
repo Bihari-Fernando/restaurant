@@ -61,7 +61,8 @@ function Customers() {
 
       <div className="card">
         <h2>👥 All Customers</h2>
-        <table className="data-table">
+        <div className="table-wrapper">
+            <table className="data-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -87,6 +88,8 @@ function Customers() {
             ))}
           </tbody>
         </table>
+        </div>
+        
       </div>
     </div>
   );
