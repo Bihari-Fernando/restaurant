@@ -9,6 +9,32 @@ const api = axios.create({
     }
 });
 
+// Auto attach token to every request
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
+// Auto redirect to login if 403
+api.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.response?.status === 403 || error.response?.status === 401) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            window.location.href = '/';
+        }
+        return Promise.reject(error);
+    }
+);
+
+// Auth
+export const login = (credentials) => axios.post(`${BASE_URL}/auth/login`, credentials);
+export const register = (userData) => axios.post(`${BASE_URL}/auth/register`, userData);
+
 // Tables
 export const getTables = () => api.get('/tables');
 export const addTable = (table) => api.post('/tables', table);
@@ -22,6 +48,7 @@ export const deleteCustomer = (id) => api.delete(`/customers/${id}`);
 
 // Waitlist
 export const getWaitlist = () => api.get('/waitlist');
+export const getAllWaitlist = () => api.get('/waitlist/all');
 export const joinWaitlist = (customerId) => api.post(`/waitlist/join/${customerId}`);
 export const cancelWaitlist = (id) => api.put(`/waitlist/${id}/cancel`);
 export const markSeated = (id) => api.put(`/waitlist/${id}/seated`);
@@ -34,11 +61,8 @@ export const cancelBooking = (id) => api.put(`/bookings/${id}/cancel`);
 
 // Orders
 export const getOrders = () => api.get('/orders');
+export const getAllOrders = () => api.get('/orders');
 export const placeOrder = (bookingId, order) => api.post(`/orders/booking/${bookingId}`, order);
 export const updateOrderStatus = (id, status) => api.put(`/orders/${id}/status/${status}`);
 export const getOrdersByBooking = (bookingId) => api.get(`/orders/booking/${bookingId}`);
 export const getTotalBill = (bookingId) => api.get(`/orders/booking/${bookingId}/bill`);
-
-// Dashboard
-export const getAllWaitlist = () => api.get('/waitlist/all');
-export const getAllOrders = () => api.get('/orders');
