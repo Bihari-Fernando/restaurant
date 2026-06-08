@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Tables from './components/Tables';
 import Customers from './components/Customers';
@@ -10,6 +11,26 @@ import './App.css';
 function App() {
   const [activePage, setActivePage] = useState('dashboard');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem('username');
+    const savedToken = localStorage.getItem('token');
+    if (savedUsername && savedToken) {
+      setUsername(savedUsername);
+    }
+  }, []);
+
+  const handleLogin = (username) => {
+    setUsername(username);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    setUsername(null);
+    setActivePage('dashboard');
+  };
 
   const navigate = (page) => {
     setActivePage(page);
@@ -37,6 +58,11 @@ function App() {
     { key: 'orders', label: '🍗 Orders' },
   ];
 
+  // Show login if not authenticated
+  if (!username) {
+    return <Login onLogin={handleLogin} />;
+  }
+
   return (
     <div className="app">
       <nav className="navbar">
@@ -55,7 +81,28 @@ function App() {
           ))}
         </div>
 
-        {/* Hamburger for mobile */}
+        {/* User info + Logout */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <span style={{ color: '#bdc3c7', fontSize: '14px' }}>
+            👤 {username}
+          </span>
+          <button
+            onClick={handleLogout}
+            style={{
+              background: '#e74c3c',
+              color: 'white',
+              border: 'none',
+              padding: '7px 14px',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '13px'
+            }}
+          >
+            Logout
+          </button>
+        </div>
+
+        {/* Hamburger */}
         <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           <span></span>
           <span></span>
@@ -74,6 +121,9 @@ function App() {
             {item.label}
           </button>
         ))}
+        <button onClick={handleLogout} style={{ color: '#e74c3c' }}>
+          🚪 Logout
+        </button>
       </div>
 
       <main className="main-content">
