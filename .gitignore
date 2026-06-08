@@ -12,3 +12,7 @@ frontend/restaurant-frontend/build/
 
 # Environment
 .env
+.env.local
+
+# Local environment secrets
+application-local.properties
