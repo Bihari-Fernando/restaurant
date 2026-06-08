@@ -6,6 +6,7 @@ function Customers() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [partySize, setPartySize] = useState('');
+  const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
   useEffect(() => {
@@ -27,9 +28,9 @@ function Customers() {
       return;
     }
     try {
-      await addCustomer({ name, phone, partySize: parseInt(partySize) });
+      await addCustomer({ name, phone, partySize: parseInt(partySize), email });
       setMessage('Customer added successfully! ✅');
-      setName(''); setPhone(''); setPartySize('');
+      setName(''); setPhone(''); setPartySize(''); setEmail('');
       fetchCustomers();
     } catch (err) {
       setMessage('Error adding customer ❌');
@@ -52,44 +53,69 @@ function Customers() {
         <h2>👥 Add New Customer</h2>
         {message && <p style={{ color: '#e74c3c', marginBottom: '10px' }}>{message}</p>}
         <div className="form-row">
-          <input placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} />
-          <input placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
-          <input type="number" placeholder="Party Size" value={partySize} onChange={(e) => setPartySize(e.target.value)} />
-          <button className="btn btn-primary" onClick={handleAddCustomer}>Add Customer</button>
+          <input
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            placeholder="Phone Number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Party Size"
+            value={partySize}
+            onChange={(e) => setPartySize(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email (optional)"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <button className="btn btn-primary" onClick={handleAddCustomer}>
+            Add Customer
+          </button>
         </div>
       </div>
 
       <div className="card">
         <h2>👥 All Customers</h2>
         <div className="table-wrapper">
-            <table className="data-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Party Size</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {customers.map(customer => (
-              <tr key={customer.id}>
-                <td>{customer.id}</td>
-                <td>{customer.name}</td>
-                <td>{customer.phone}</td>
-                <td>{customer.partySize} persons</td>
-                <td>
-                  <button className="btn btn-danger" onClick={() => handleDelete(customer.id)}>
-                    Delete
-                  </button>
-                </td>
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Party Size</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {customers.map(customer => (
+                <tr key={customer.id}>
+                  <td>{customer.id}</td>
+                  <td>{customer.name}</td>
+                  <td>{customer.phone}</td>
+                  <td>{customer.email || '-'}</td>
+                  <td>{customer.partySize} persons</td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDelete(customer.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        
       </div>
     </div>
   );
