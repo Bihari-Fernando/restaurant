@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import Tables from "./components/Tables";
 import Customers from "./components/Customers";
 import Waitlist from "./components/Waitlist";
 import Bookings from "./components/Bookings";
 import Orders from "./components/Orders";
+import Register from "./components/Register";
 import "./App.css";
 
 function App() {
