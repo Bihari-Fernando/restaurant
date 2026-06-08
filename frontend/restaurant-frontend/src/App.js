@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
+import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import Tables from './components/Tables';
 import Customers from './components/Customers';
@@ -12,6 +13,7 @@ function App() {
   const [activePage, setActivePage] = useState('dashboard');
   const [menuOpen, setMenuOpen] = useState(false);
   const [username, setUsername] = useState(null);
+  const [showRegister, setShowRegister] = useState(false);
 
   useEffect(() => {
     const savedUsername = localStorage.getItem('username');
@@ -60,8 +62,18 @@ function App() {
 
   // Show login if not authenticated
   if (!username) {
-    return <Login onLogin={handleLogin} />;
+  if (showRegister) {
+    return (
+      <Register onSwitchToLogin={() => setShowRegister(false)} />
+    );
   }
+  return (
+    <Login
+      onLogin={handleLogin}
+      onSwitchToRegister={() => setShowRegister(true)}
+    />
+  );
+}
 
   return (
     <div className="app">

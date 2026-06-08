@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login } from '../api/api';
 
-function Login({ onLogin }) {
+function Login({ onLogin, onSwitchToRegister }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -142,6 +142,23 @@ function Login({ onLogin }) {
         }}>
           🔐 Secured with JWT Authentication
         </div>
+        {/* Switch to Register */}
+<div style={{ textAlign: 'center', marginTop: '15px' }}>
+  <span style={{ color: '#7f8c8d', fontSize: '14px' }}>
+    Don't have an account?{' '}
+  </span>
+  <span
+    onClick={onSwitchToRegister}
+    style={{
+      color: '#3498db',
+      fontSize: '14px',
+      cursor: 'pointer',
+      fontWeight: '600'
+    }}
+  >
+    Register
+  </span>
+</div>
       </div>
     </div>
   );
