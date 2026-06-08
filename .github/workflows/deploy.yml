@@ -23,7 +23,9 @@ jobs:
           script: |
             # Pull latest code
             cd ~/restaurant
-            git pull origin main
+            git stash
+            git pull origin master
+            git stash pop
 
             # Rebuild and restart backend
             cd ~/restaurant/backend/queue-system
