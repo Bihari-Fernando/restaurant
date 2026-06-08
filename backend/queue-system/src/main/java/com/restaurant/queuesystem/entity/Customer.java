@@ -24,4 +24,7 @@ public class Customer {
 
     @Column(nullable = false)
     private Integer partySize;
+
+    @Column
+    private String email;
 }
