@@ -56,7 +56,8 @@ public class SecurityConfig {
         config.setAllowedOrigins(List.of(
                 "http://localhost:3000",
                 "http://43.204.228.50",
-                "http://my-restaurant.ddns.net"));
+                "http://my-restaurant.ddns.net",
+                "https://my-restaurant.ddns.net"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
